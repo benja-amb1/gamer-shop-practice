@@ -120,6 +120,40 @@ header ul li a {
   width: 15%;
 }
 
+.section-form {
+  background-color: #fcfcfc;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.section-form input,
+.section-form select,
+.section-form button {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 18px;
+}
+
+.section-form button {
+  background-color: orangered;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 300ms;
+}
+
+.section-form button:hover {
+  background-color: rgb(225, 60, 0);
+}
+
+
 /* Footer */
 
 footer {
