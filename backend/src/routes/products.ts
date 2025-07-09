@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 // Obtener todos los productos
-router.get("/", getAllProducts);
+router.get("/all-products", getAllProducts);
 
 // Obtener un producto por ID
 router.get("/:id", getProduct);

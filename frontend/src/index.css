@@ -3,8 +3,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
+main h1,
+main h2 {
+  text-align: center;
+}
+
+/* Header */
 header .logo {
   width: 5%;
   height: auto;
@@ -29,6 +36,91 @@ header ul li a {
   text-decoration: none;
   color: #ff4500;
 }
+
+.product-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem;
+}
+
+.product-card {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  padding: 1rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 40%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.product-card h3 {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.product-card p {
+  margin-bottom: 20px;
+}
+
+.product-card a,
+.btn-orange {
+  background-color: orangered;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 300ms;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+}
+
+.btn-orange {
+  font-size: 15px;
+  width: 200px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-card a:hover,
+.btn-orange:hover {
+  background-color: rgb(225, 60, 0);
+}
+
+.quotes-home {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+}
+
+.card-home {
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-left: 1px solid black;
+}
+
+.card-home img {
+  width: 15%;
+}
+
+/* Footer */
 
 footer {
   background-color: #1e1e1e;
