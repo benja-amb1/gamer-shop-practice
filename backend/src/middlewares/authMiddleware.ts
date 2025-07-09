@@ -2,16 +2,8 @@ import mongoose from "mongoose";
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 
-interface AuthUser {
-  id: string;
-  name: string;
-  role: string;
-  email: string;
-}
+import { UserReq, AuthUser } from "../interfaces/usereq";
 
-interface UserReq extends Request {
-  user?: AuthUser;
-}
 
 export const isAuthenticated = async (req: UserReq, res: Response, next: NextFunction): Promise<any> => {
   try {

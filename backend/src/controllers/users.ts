@@ -4,16 +4,7 @@ import User from "../models/users";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 
-interface AuthUser {
-  id: string;
-  name: string;
-  role: string;
-  email: string;
-}
-
-interface UserReq extends Request {
-  user?: AuthUser;
-}
+import { UserReq } from "../interfaces/usereq";
 
 const createNewUser = (role: string) => {
   return async (req: Request, res: Response): Promise<any> => {

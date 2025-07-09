@@ -1,15 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
-interface AuthUser {
-  id: string;
-  name: string;
-  role: string;
-  email: string;
-}
+import { UserReq } from "../interfaces/usereq";
 
-interface UserReq extends Request {
-  user?: AuthUser;
-}
 
 export const checkRole = (...role: string[]) => {
   return (req: UserReq, res: Response, next: NextFunction): any => {
