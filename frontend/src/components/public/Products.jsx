@@ -8,7 +8,7 @@ const Products = () => {
 
   const { products, getAllProducts, loading } = useProduct();
   const [term, setTerm] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState(products); // o []
 
   const searchTerm = (e) => {
     const value = e.target.value.toLowerCase();
@@ -22,8 +22,8 @@ const Products = () => {
   };
 
   useEffect(() => {
-    setFilteredProducts(products);
-  }, [products]);
+    setFilteredProducts(products)
+  }, [products])
 
 
   useEffect(() => { getAllProducts() }, [])
@@ -33,7 +33,7 @@ const Products = () => {
   return (
     <>
       <h2>Products:</h2>
-      <input
+      <input className='search-input'
         type="text"
         onChange={searchTerm}
         value={term}

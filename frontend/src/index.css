@@ -60,7 +60,7 @@ header ul li a {
 
 .product-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -75,12 +75,12 @@ header ul li a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 400px;
   text-align: center;
+  min-height: 400px;
 }
 
 .product-card img {
-  width: 40%;
+  width: 200px;
   height: auto;
   margin-bottom: 20px;
 }
@@ -200,6 +200,14 @@ header ul li a {
     bottom: 60px;
   }
 
+}
+
+.search-input {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid orangered;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Footer */
