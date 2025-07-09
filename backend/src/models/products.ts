@@ -7,6 +7,7 @@ interface ProductInterface {
   price: number;
   quantity: number;
   stock: boolean;
+  category: string[];
 }
 
 const ProductSchema = new Schema<ProductInterface>(
@@ -17,6 +18,7 @@ const ProductSchema = new Schema<ProductInterface>(
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
     stock: { type: Boolean, required: true },
+    category: { type: [String], required: true }
   },
   { versionKey: false, timestamps: true }
 );

@@ -4,14 +4,14 @@ import Product from "../models/products";
 
 export const addProduct = async (req: Request, res: Response): Promise<any> => {
   try {
-    const { title, description, image, price, quantity, stock } = req.body;
+    const { title, description, image, price, quantity, stock, category } = req.body;
 
-    if (!title || !description || !image || price === undefined || quantity === undefined || stock === undefined) {
+    if (!title || !description || !image || price === undefined || quantity === undefined || stock === undefined || !Array.isArray(category) || category.length === 0) {
       res.status(400).json({ status: false, message: "All fields are required." });
       return;
     }
 
-    const product = new Product({ title, description, image, price, quantity, stock });
+    const product = new Product({ title, description, image, price, quantity, stock, category });
     await product.save();
 
     res.status(201).json({ status: true, message: "Product created.", data: product });
@@ -48,10 +48,10 @@ export const deleteProduct = async (req: Request, res: Response): Promise<void> 
 
 export const updateProduct = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { title, description, image, price, quantity, stock } = req.body;
+    const { title, description, image, price, quantity, stock, category } = req.body;
     const { id } = req.params;
 
-    if (!title || !description || !image || price === undefined || quantity === undefined || stock === undefined) {
+    if (!title || !description || !image || price === undefined || quantity === undefined || stock === undefined || !Array.isArray(category) || category.length === 0) {
       res.status(400).json({ status: false, message: "All fields are required." });
       return;
     }
@@ -61,7 +61,11 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
       return;
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(id, { title, description, image, price, quantity, stock }, { new: true });
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      { title, description, image, price, quantity, stock, category },
+      { new: true }
+    );
 
     if (!updatedProduct) {
       res.status(404).json({ status: false, message: "Error to update product." });
@@ -75,6 +79,7 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
     console.log(error);
   }
 }
+
 
 export const getProduct = async (req: Request, res: Response): Promise<void> => {
   try {
