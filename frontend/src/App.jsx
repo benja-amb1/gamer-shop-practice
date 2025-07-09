@@ -1,3 +1,6 @@
+import { Footer } from "./assets/layout/Footer"
+import { Header } from "./assets/layout/Header"
+import { Home } from "./components/public/Home"
 
 
 function App() {
@@ -5,7 +8,9 @@ function App() {
 
   return (
     <>
-      <h1>dsa</h1>
+      <Header />
+      <Home />
+      <Footer />
     </>
   )
 }

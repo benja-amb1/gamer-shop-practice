@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import App from '../App'
 
 const Routing = () => {
   return (
@@ -6,7 +7,7 @@ const Routing = () => {
     <BrowserRouter>
       <Routes>
 
-
+        <Route path='/' element={<App />} />
 
 
 

@@ -4,3 +4,35 @@
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+header .logo {
+  width: 5%;
+  height: auto;
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  padding: 1rem;
+}
+
+header ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: #ff4500;
+}
+
+footer {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+}
