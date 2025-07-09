@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import LoginIcon from '../images/loginicon.svg'
 
 const Header = () => {
 
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(prevValue => !prevValue)
+  }
+
   const navigate = useNavigate();
 
-  const handleClick = () =>
+  const handleClick = () => {
     navigate('/')
+  }
+
 
   return (
     <header>
@@ -28,9 +36,17 @@ const Header = () => {
             <NavLink to={`/contact`}>Contact</NavLink>
           </li>
 
-          <li>
-            <NavLink to={`/login`}><img src={LoginIcon} alt="" /></NavLink>
+          <li className="login-icon-wrapper">
+            <img src={LoginIcon} alt="Login Icon" onClick={toggleModal} />
+
+            {modal && (
+              <div className="header-modal">
+                <NavLink to={`/login`}>Login</NavLink>
+                <NavLink to={`/register`}>Register</NavLink>
+              </div>
+            )}
           </li>
+
         </ul>
       </nav>
 

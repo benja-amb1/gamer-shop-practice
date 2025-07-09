@@ -4,6 +4,7 @@ import { useProduct } from '../../hooks/useProduct';
 import { Products } from './Products';
 import { NavLink } from 'react-router-dom';
 import { CardsHome } from '../../assets/layout/CardsHome';
+import { ArrowUp } from '../../assets/layout/ArrowUp';
 
 const Home = () => {
   const { products, getAllProducts, loading } = useProduct();
@@ -53,6 +54,7 @@ const Home = () => {
           <h2>Category: {category}</h2>
         )))}
       </section>
+      <ArrowUp />
     </main>
   );
 };

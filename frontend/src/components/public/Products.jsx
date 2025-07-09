@@ -1,11 +1,30 @@
 // En Products.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useProduct } from '../../hooks/useProduct';
 import { NavLink } from 'react-router-dom';
+import { ArrowUp } from '../../assets/layout/ArrowUp';
 
 const Products = () => {
 
   const { products, getAllProducts, loading } = useProduct();
+  const [term, setTerm] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const searchTerm = (e) => {
+    const value = e.target.value.toLowerCase();
+    setTerm(value);
+
+    const filtered = products.filter((product) =>
+      product.title.toLowerCase().includes(value)
+    );
+
+    setFilteredProducts(filtered);
+  };
+
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, [products]);
+
 
   useEffect(() => { getAllProducts() }, [])
 
@@ -14,8 +33,15 @@ const Products = () => {
   return (
     <>
       <h2>Products:</h2>
+      <input
+        type="text"
+        onChange={searchTerm}
+        value={term}
+        placeholder="Buscar producto..."
+      />
+
       <section className='product-section'>
-        {products.map(product => (
+        {filteredProducts.map(product => (
           <div className='product-card' key={product._id}>
             <h3>{product.title}</h3>
             <img src={product.image} alt={product.title} />
@@ -23,6 +49,8 @@ const Products = () => {
             <NavLink to={`/product/${product._id}`}>Ver Producto</NavLink>
           </div>
         ))}
+
+        <ArrowUp />
       </section>
     </>
   );
