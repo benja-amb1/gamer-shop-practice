@@ -3,6 +3,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import UserRoutes from './routes/users';
+import ProductRoutes from './routes/products';
+import CartRoutes from './routes/carts';
 
 dotenv.config();
 
@@ -18,7 +21,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-
+app.use('/users', UserRoutes);
+app.use('/products', ProductRoutes);
+app.use('/carts', CartRoutes);
 
 // MongoDB Connection
 const connectDB = async (): Promise<void> => {
