@@ -17,7 +17,7 @@ const useProduct = () => {
   const [categoryInput, setCategoryInput] = useState('');
 
 
-  const baseUrl = 'http://localhost:3000/products';
+  const baseUrl = 'http://localhost:4000/products';
 
   const clearMessage = () => {
     setTimeout(() => {

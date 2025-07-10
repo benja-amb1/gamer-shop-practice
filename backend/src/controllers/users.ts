@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 
 import { UserReq } from "../interfaces/usereq";
+import users from "../models/users";
 
 const createNewUser = (role: string) => {
   return async (req: Request, res: Response): Promise<any> => {
@@ -49,8 +50,8 @@ export const deleteUser = async (req: UserReq, res: Response): Promise<any> => {
     }
 
     if (req.user?.id !== id) {
-      res.status(404).json({ status: false, message: "You dont have access to delete this user." });
-      return;
+      res.status(403).json({ status: false, message: "You don't have access to modify this user." });
+      return
     }
 
     const deletedUser = await User.findByIdAndDelete(id);
@@ -85,9 +86,11 @@ export const updateUser = async (req: UserReq, res: Response): Promise<any> => {
     const hashed = await bcrypt.hash(password, 10);
 
     if (req.user?.id !== id) {
-      res.status(403).json({ message: "You dont have access to update this user." });
+      res.status(403).json({ status: false, message: "You don't have access to modify this user." });
       return
     }
+
+
 
     const existingEmail = await User.findOne({ email, _id: { $ne: id } });
     if (existingEmail) {

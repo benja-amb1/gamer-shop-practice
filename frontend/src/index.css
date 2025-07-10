@@ -189,6 +189,7 @@ header ul li a {
   margin-bottom: 10px;
 }
 
+
 .section-form {
   background-color: #fcfcfc;
   padding: 2rem;
@@ -197,6 +198,7 @@ header ul li a {
   margin: 2rem auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 
 .section-form input,
@@ -378,12 +380,6 @@ header ul li a {
 
 
 /* Footer */
-/* .footer-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-} */
-
 footer {
   background-color: #1e1e1e;
   padding: 1rem;

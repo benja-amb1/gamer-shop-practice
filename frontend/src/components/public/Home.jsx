@@ -5,6 +5,7 @@ import { Products } from './Products';
 import { NavLink } from 'react-router-dom';
 import { CardsHome } from '../../assets/layout/CardsHome';
 import { ArrowUp } from '../../assets/layout/ArrowUp';
+import { CardProduct } from './CardProduct';
 
 const Home = () => {
   const { products, getAllProducts, loading } = useProduct();
@@ -32,25 +33,12 @@ const Home = () => {
         <h1>Welcome to AdixGaming!</h1>
         <h2>Here you'll find the best products with the best prices!</h2>
         <h3>Some Products:</h3>
-        <div className='product-section'>
-
-          {limitedProducts.map(product => (
-            <article className='product-card' key={product._id}>
-              <h4>{product.title}</h4>
-              <img src={product.image} alt={product.title} />
-              <p>Price: <strong>${product.price}</strong></p>
-              {(product.stock === false || product.quantity === 0) ? (
-                <p className='no-stock'>Without Stock!</p>
-              ) : (
-                <p></p>
-              )}
-              <NavLink to={`/product/${product._id}`}>View Product</NavLink>
-            </article>
-          ))}
 
 
+        <article className='product-section'>
+          {limitedProducts.map(product => <CardProduct product={product} />)}
+        </article>
 
-        </div>
         <NavLink className='btn-black' to={`/products/`}>See All Products</NavLink>
       </section>
 

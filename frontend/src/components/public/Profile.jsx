@@ -21,7 +21,7 @@ const Profile = () => {
   }
 
   const handleDelete = async () => {
-    await deleteUser(id)
+    await deleteUser(user._id)
     await getSession();
     setTimeout(() => {
       navigate('/');

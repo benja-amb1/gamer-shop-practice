@@ -11,7 +11,7 @@ export const useUser = () => {
   const [msgError, setMsgError] = useState('');
   const [msgSuccess, setMsgSuccess] = useState('');
 
-  const baseUrl = 'http://localhost:3000/users';
+  const baseUrl = 'http://localhost:4000/users';
 
   const clearMessage = () => {
     setTimeout(() => {
@@ -130,7 +130,7 @@ export const useUser = () => {
 
   const deleteUser = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/delete-user/${id}`, {
+      const res = await fetch(`http://localhost:3000/users/delete-user/${id}`, {
         method: 'DELETE',
         credentials: 'include'
       });
@@ -152,10 +152,38 @@ export const useUser = () => {
     }
   }
 
+  const updateUser = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/update-user/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ name, surname, email, password })
+      });
+
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMsgError(data.message);
+        clearMessage();
+        return;
+      }
+
+      setUser(data.data);
+      setMsgSuccess(data.message);
+      clearMessage();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
 
 
 
   return {
-    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login, getUser, getSession, logout, deleteUser
+    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login, getUser, getSession, logout, deleteUser, updateUser
   }
 }

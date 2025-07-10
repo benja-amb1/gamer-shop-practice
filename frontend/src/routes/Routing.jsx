@@ -10,6 +10,7 @@ import { AdminPanel } from '../components/private/admin/AdminPanel'
 import { Login } from '../components/public/Login'
 import { RegisterUser } from '../components/public/RegisterUser'
 import { Profile } from '../components/public/Profile'
+import { UpdateUser } from '../components/public/UpdateUser'
 
 const Routing = () => {
   return (
@@ -30,6 +31,7 @@ const Routing = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/sign-up' element={<RegisterUser />} />
         <Route path='/profile/:id' element={<Profile />} />
+        <Route path='/update-user/:id' element={<UpdateUser />} />
 
 
       </Routes>

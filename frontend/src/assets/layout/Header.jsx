@@ -25,7 +25,9 @@ const Header = () => {
   const handleLogout = async () => {
     setModal(false);
     await logout();
+    await navigate('/')
     window.location.reload();
+
   };
 
 

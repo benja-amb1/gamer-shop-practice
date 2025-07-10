@@ -13,17 +13,25 @@ const PORT = process.env.PORT ?? 1234;
 const MONGO_URI = 'mongodb://localhost:27017/compragamer';
 
 const app = express();
-
-// Middlewares
-app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // esto es para q funcione el envio de token en cookies
-app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Middlewares
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true, // esto es para q funcione el envio de token en cookies
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
+app.use(cookieParser());
+
+
 
 // Routes
 app.use('/users', UserRoutes);
 app.use('/products', ProductRoutes);
 app.use('/carts', CartRoutes);
+
+
 
 // MongoDB Connection
 const connectDB = async (): Promise<void> => {
