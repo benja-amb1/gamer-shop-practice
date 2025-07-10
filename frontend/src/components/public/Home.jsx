@@ -36,14 +36,15 @@ const Home = () => {
             <div className='product-card' key={product._id}>
               <h3>{product.title}</h3>
               <img src={product.image} alt={product.title} />
-              <p>Price: <strong>{product.price}</strong></p>
+              <p>Price: <strong>${product.price}</strong></p>
               <NavLink to={`/product/${product._id}`}>View Product</NavLink>
             </div>
           ))}
 
 
-          <NavLink className='btn-orange' to={`/products/`}>See All Products</NavLink>
+
         </div>
+        <NavLink className='btn-black' to={`/products/`}>See All Products</NavLink>
       </section>
 
       <CardsHome />

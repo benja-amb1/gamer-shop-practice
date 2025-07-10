@@ -6,10 +6,13 @@ import { ArrowUp } from '../../assets/layout/ArrowUp';
 
 const Products = () => {
 
-  const { products, getAllProducts, loading } = useProduct();
+  const { products, getAllProducts, loading, stock } = useProduct();
   const [term, setTerm] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState(products); // o []
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
+  products.forEach(product => {
+    console.log(product);
+  })
   const searchTerm = (e) => {
     const value = e.target.value.toLowerCase();
     setTerm(value);
@@ -45,7 +48,12 @@ const Products = () => {
           <div className='product-card' key={product._id}>
             <h3>{product.title}</h3>
             <img src={product.image} alt={product.title} />
-            <p>Price: <strong>{product.price}</strong></p>
+            <p>Price: <strong>${product.price}</strong></p>
+            {product.stock === false ? (
+              <p className='no-stock'>Without Stock!</p>
+            ) : (
+              <p></p>
+            )}
             <NavLink to={`/product/${product._id}`}>Ver Producto</NavLink>
           </div>
         ))}
@@ -55,5 +63,7 @@ const Products = () => {
     </>
   );
 };
+
+
 
 export { Products };

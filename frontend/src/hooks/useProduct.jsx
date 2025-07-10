@@ -7,7 +7,7 @@ const useProduct = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(parseFloat());
   const [quantity, setQuantity] = useState(0);
   const [stock, setStock] = useState('');
   const [category, setCategory] = useState([]);
@@ -21,6 +21,7 @@ const useProduct = () => {
 
   const clearMessage = () => {
     setTimeout(() => {
+      setMsgError('');
       setMsgSuccess('');
     }, 5000);
   }
@@ -37,7 +38,9 @@ const useProduct = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        setMsgError(data.message)
+        setMsgError(data.message);
+        clearMessage();
+        return;
       }
 
       setProduct(data.data);
@@ -45,7 +48,6 @@ const useProduct = () => {
       clearMessage();
 
     } catch (error) {
-      setMsgError(data.message || 'Error to create post.');
       console.log(error);
     }
   }
@@ -60,12 +62,33 @@ const useProduct = () => {
 
       if (!res.ok) {
         setMsgError(data.message)
+        return;
       }
       setProducts(data.data);
 
     } catch (error) {
       console.log(error);
-      setMsgError(data.message || 'Server error.')
+      setMsgError('Server error.')
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const getProduct = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/${id}`, {
+        method: 'GET'
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMsgError(data.message)
+      }
+      setProduct(data.data);
+
+    } catch (error) {
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -83,7 +106,7 @@ const useProduct = () => {
     loading,
     msgError,
     msgSuccess, products, setProducts,
-    addProduct, getAllProducts, categoryInput, setCategoryInput
+    addProduct, getAllProducts, categoryInput, setCategoryInput, getProduct
   };
 };
 
