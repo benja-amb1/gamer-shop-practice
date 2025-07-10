@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.post("/login", loginUser);
 router.post("/logout", logout);
-router.post("/register", createUser);
+router.post("/register/user", createUser);
 
 router.post("/register/semiadmin", createSemiAdmin);
 router.post("/register/admin", createAdmin);

@@ -99,6 +99,54 @@ const useProduct = () => {
     }
   }
 
+  const updateProduct = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, description, image, price, quantity, stock: stock === 'true', category: categoryInput.split(',').map(cat => cat.trim()).filter(cat => cat.length > 0) })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMsgError(data.message);
+        clearMessage();
+        return;
+      }
+
+      setProduct(data.data);
+      setMsgSuccess(data.message);
+      clearMessage();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const deleteProduct = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/${id}`, {
+        method: 'DELETE'
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMsgError(data.message)
+        clearMessage();
+        return;
+      }
+
+      setProduct(null);
+      setMsgSuccess(data.message)
+      clearMessage();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     product,
     title, setTitle,
@@ -111,7 +159,7 @@ const useProduct = () => {
     loading,
     msgError,
     msgSuccess, products, setProducts,
-    addProduct, getAllProducts, categoryInput, setCategoryInput, getProduct
+    addProduct, getAllProducts, categoryInput, setCategoryInput, getProduct, updateProduct, deleteProduct
   };
 };
 

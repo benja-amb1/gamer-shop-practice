@@ -311,6 +311,59 @@ header ul li a {
   border-radius: 20px;
 }
 
+.admin-products-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-products-btns button,
+.btn-confirm,
+.btn-cancel {
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+}
+
+.admin-products-btns button:nth-child(1) {
+  background-color: rgb(0, 190, 0);
+}
+
+.admin-products-btns button:nth-child(2) {
+  background-color: blue;
+}
+
+.admin-products-btns button:nth-child(3) {
+  background-color: red;
+  text-align: center;
+  border: none;
+}
+
+.modal p {
+  margin-top: 20px;
+}
+
+.btn-confirm,
+.btn-cancel {
+  margin: 0 1rem;
+}
+
+
+
+.btn-cancel {
+  background-color: darkgrey;
+}
+
+.btn-confirm {
+  background-color: red;
+}
+
+
 /* Footer */
 /* .footer-container {
   min-height: 100vh;

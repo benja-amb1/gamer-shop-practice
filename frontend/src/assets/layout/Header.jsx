@@ -42,7 +42,7 @@ const Header = () => {
             {modal && (
               <div className="header-modal">
                 <NavLink to={`/login`}>Login</NavLink>
-                <NavLink to={`/register`}>Register</NavLink>
+                <NavLink to={`/sign-up`}>Register</NavLink>
               </div>
             )}
           </li>

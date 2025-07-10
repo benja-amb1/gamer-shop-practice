@@ -1,18 +1,15 @@
-// En Products.jsx
 import React, { useEffect, useState } from 'react';
-import { useProduct } from '../../hooks/useProduct';
+import { useProduct } from '../../../hooks/useProduct';
 import { NavLink } from 'react-router-dom';
-import { ArrowUp } from '../../assets/layout/ArrowUp';
+import { ArrowUp } from '../../../assets/layout/ArrowUp';
 
-const Products = () => {
 
-  const { products, getAllProducts, loading, stock } = useProduct();
+const AdminPanel = () => {
+  const { products, getAllProducts, loading, deleteProduct } = useProduct();
   const [term, setTerm] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const [modalProductId, setModalProductId] = useState(null);
 
-  products.forEach(product => {
-    console.log(product);
-  })
   const searchTerm = (e) => {
     const value = e.target.value.toLowerCase();
     setTerm(value);
@@ -27,19 +24,28 @@ const Products = () => {
     setFilteredProducts(filtered);
   };
 
+  const handleDelete = async (id) => {
+    await deleteProduct(id);
+    await getAllProducts();
+    setModalProductId(null);
+  };
+
   useEffect(() => {
-    setFilteredProducts(products)
-  }, [products])
+    getAllProducts();
+  }, []);
 
-
-  useEffect(() => { getAllProducts() }, [])
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, [products]);
 
   if (loading) return <p>Loading...</p>;
 
   return (
     <section className='products-jsx'>
       <h2>Products:</h2>
-      <input className='search-input'
+
+      <input
+        className='search-input'
         type="text"
         onChange={searchTerm}
         value={term}
@@ -58,16 +64,29 @@ const Products = () => {
             ) : (
               <p></p>
             )}
-            <NavLink to={`/product/${product._id}`}>View Product</NavLink>
+
+            <div className='admin-products-btns'>
+              <button to={`/product/${product._id}`}>View Product</button>
+              <button to={`/update-product/${product._id}`}>Update Product</button>
+              <button onClick={() => setModalProductId(product._id)}>Delete Product</button>
+            </div>
+
+            {modalProductId === product._id && (
+              <div className="modal">
+                <p>Delete this product?</p>
+                <button className='btn-confirm' onClick={() => handleDelete(product._id)}>Confirm</button>
+                <button className='btn-cancel' onClick={() => setModalProductId(null)}>Cancel</button>
+              </div>
+            )}
           </div>
         ))}
 
+
         <ArrowUp />
+
       </article>
     </section>
   );
 };
 
-
-
-export { Products };
+export { AdminPanel };
