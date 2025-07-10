@@ -9,6 +9,7 @@ import { UpdateProduct } from '../components/private/UpdateProduct'
 import { AdminPanel } from '../components/private/admin/AdminPanel'
 import { Login } from '../components/public/Login'
 import { RegisterUser } from '../components/public/RegisterUser'
+import { Profile } from '../components/public/Profile'
 
 const Routing = () => {
   return (
@@ -28,6 +29,7 @@ const Routing = () => {
         <Route path='/admin' element={<AdminPanel />} />
         <Route path='/login' element={<Login />} />
         <Route path='/sign-up' element={<RegisterUser />} />
+        <Route path='/profile/:id' element={<Profile />} />
 
 
       </Routes>

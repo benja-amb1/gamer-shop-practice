@@ -353,6 +353,19 @@ header ul li a {
   margin: 0 1rem;
 }
 
+.logout-btn {
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 300ms;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: rgb(205, 0, 0);
+}
+
 
 
 .btn-cancel {

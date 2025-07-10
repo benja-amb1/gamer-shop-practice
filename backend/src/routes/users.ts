@@ -23,7 +23,7 @@ router.post("/register/admin", createAdmin);
 
 router.get("/get-user/:id", getUser);
 router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
+router.delete("/delete-user/:id", isAuthenticated, deleteUser);
 
 router.get('/get-session', isAuthenticated, getSession)
 

@@ -7,7 +7,7 @@ const Header = () => {
 
   const [modal, setModal] = useState(false);
 
-  const { getSession, user } = useUser();
+  const { getSession, user, logout } = useUser();
 
   useEffect(() => { getSession() }, [])
 
@@ -21,6 +21,12 @@ const Header = () => {
   const handleClick = () => {
     navigate('/')
   }
+
+  const handleLogout = async () => {
+    setModal(false);
+    await logout();
+    window.location.reload();
+  };
 
 
   return (
@@ -47,17 +53,23 @@ const Header = () => {
 
             {modal && (
               <div className="header-modal">
-                {!user ? (
+
+
+
+                {user ? (
+                  <>
+                    <NavLink to={`/profile/${user._id}`}>{user.name} {user.surname}</NavLink>
+                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+
+                  </>
+
+                ) : (
                   <>
                     <NavLink to={`/login`}>Login</NavLink>
                     <NavLink to={`/sign-up`}>Register</NavLink>
                   </>
-                ) : (
-                  <>
-                    <NavLink to={`/profile/${user._id}`}>{user.name} {user.surname}</NavLink>
-                    <NavLink to={`/logout`}>Logout</NavLink>
-                  </>
                 )}
+
 
               </div>
             )}

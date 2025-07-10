@@ -13,7 +13,6 @@ export const isAuthenticated = async (req: UserReq, res: Response, next: NextFun
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as AuthUser;
-    console.log('Decoded token:', decoded);
 
     req.user = decoded;
     return next();

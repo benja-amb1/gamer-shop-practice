@@ -13,7 +13,7 @@ const RegisterUser = () => {
     await registerUser();
 
     setTimeout(() => {
-      navigate('/')
+      navigate('/login')
     }, 3000);
   }
 

@@ -6,7 +6,7 @@ export const useUser = () => {
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [msgError, setMsgError] = useState('');
   const [msgSuccess, setMsgSuccess] = useState('');
@@ -61,36 +61,37 @@ export const useUser = () => {
       if (!res.ok) {
         setMsgError(data.message);
         clearMessage();
-        return;
+        return false;
       }
 
       setUser(data.data);
       setMsgSuccess(data.message);
       clearMessage();
+      return true;
 
     } catch (error) {
       console.log(error);
     }
   }
 
-  // const getUser = async (id) => {
-  //   try {
-  //     const res = await fetch(`${baseUrl}/${id}`, {
-  //       method: 'GET', credentials: 'include'
-  //     });
+  const getUser = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/get-user/${id}`, {
+        method: 'GET', credentials: 'include'
+      });
 
-  //     const data = await res.json();
-  //     if (!res.ok) {
-  //       setMsgError(data.message);
-  //       clearMessage();
-  //       return;
-  //     }
-  //     setUser(data.data);
+      const data = await res.json();
+      if (!res.ok) {
+        setMsgError(data.message);
+        clearMessage();
+        return;
+      }
+      setUser(data.data);
 
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const getSession = async () => {
     try {
@@ -111,10 +112,50 @@ export const useUser = () => {
     }
   }
 
+  const logout = async () => {
+    try {
+      const res = await fetch(`${baseUrl}/logout`, {
+        method: 'POST',
+        credentials: 'include'
+      });
+
+      const data = await res.json();
+
+      setUser(null);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const deleteUser = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/delete-user/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMsgError(data.message)
+        clearMessage();
+        return;
+      }
+
+      setUser(null);
+      setMsgSuccess(data.message);
+      clearMessage();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
 
 
   return {
-    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login,/* getUser,*/ getSession
+    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login, getUser, getSession, logout, deleteUser
   }
 }

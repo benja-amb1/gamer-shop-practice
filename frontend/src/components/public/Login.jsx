@@ -8,13 +8,18 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login();
-    setTimeout(() => {
-      navigate('/')
-    }, 3000);
-  }
+    const success = await login();
+    if (success) {
+      setTimeout(() => {
+        navigate('/');
+        window.location.reload();
+      }, 3000);
+    }
+
+
+  };
 
   return (
     <section className='section-form'>
