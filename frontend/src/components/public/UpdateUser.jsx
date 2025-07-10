@@ -2,7 +2,7 @@ import React from 'react'
 import { FormCard } from './FormCard'
 import { useUser } from '../../hooks/useUser'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 const UpdateUser = () => {
 
@@ -12,7 +12,7 @@ const UpdateUser = () => {
 
   useEffect(() => {
     getUser(id)
-  }, [])
+  }, []);
 
 
   useEffect(() => {

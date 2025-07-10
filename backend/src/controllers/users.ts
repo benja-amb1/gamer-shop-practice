@@ -113,13 +113,18 @@ export const updateUser = async (req: UserReq, res: Response): Promise<any> => {
   }
 }
 
-export const getUser = async (req: Request, res: Response): Promise<any> => {
+export const getUser = async (req: UserReq, res: Response): Promise<any> => {
   try {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(404).json({ status: false, message: "Invalid ID in get user." });
       return;
+    }
+
+    if (req.user?.id !== id) {
+      res.status(403).json({ status: false, message: "You don't have access to this profile." });
+      return
     }
 
     const user = await User.findById(id);

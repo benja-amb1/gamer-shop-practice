@@ -22,7 +22,7 @@ router.post("/register/user", createUser);
 router.post("/register/semiadmin", createSemiAdmin);
 router.post("/register/admin", createAdmin);
 
-router.get("/get-user/:id", getUser);
+router.get("/get-user/:id", isAuthenticated, getUser);
 router.put("/update-user/:id", isAuthenticated, updateUser);
 router.delete("/delete-user/:id", isAuthenticated, deleteUser);
 

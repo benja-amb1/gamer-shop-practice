@@ -11,6 +11,8 @@ import { Login } from '../components/public/Login'
 import { RegisterUser } from '../components/public/RegisterUser'
 import { Profile } from '../components/public/Profile'
 import { UpdateUser } from '../components/public/UpdateUser'
+import { PrivateRoutes } from './PrivateRoutes'
+
 
 const Routing = () => {
   return (

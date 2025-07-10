@@ -10,6 +10,7 @@ export const useUser = () => {
   const [users, setUsers] = useState([]);
   const [msgError, setMsgError] = useState('');
   const [msgSuccess, setMsgSuccess] = useState('');
+  const [loading, SetLoading] = useState(true)
 
   const baseUrl = 'http://localhost:4000/users';
 
@@ -40,6 +41,8 @@ export const useUser = () => {
       clearMessage();
     } catch (error) {
       console.log(error);
+    } finally {
+      SetLoading(false)
     }
   }
 
@@ -90,6 +93,8 @@ export const useUser = () => {
 
     } catch (error) {
       console.log(error);
+    } finally {
+      SetLoading(false)
     }
   }
 
@@ -109,6 +114,8 @@ export const useUser = () => {
       setUser(data.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      SetLoading(false)
     }
   }
 
@@ -125,6 +132,8 @@ export const useUser = () => {
 
     } catch (error) {
       console.log(error);
+    } finally {
+      SetLoading(false)
     }
   }
 
@@ -149,6 +158,8 @@ export const useUser = () => {
 
     } catch (error) {
       console.log(error);
+    } finally {
+      SetLoading(false)
     }
   }
 
@@ -176,6 +187,8 @@ export const useUser = () => {
 
     } catch (error) {
       console.log(error);
+    } finally {
+      SetLoading(false)
     }
   }
 

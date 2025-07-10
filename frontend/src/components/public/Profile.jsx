@@ -12,6 +12,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
 
+
   const openModal = () => {
     setModal(true)
   }
