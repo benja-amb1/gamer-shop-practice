@@ -11,6 +11,11 @@ export const addProduct = async (req: Request, res: Response): Promise<any> => {
       return;
     }
 
+    if (quantity === 0 && stock === true || stock === false && quantity > 0) {
+      res.status(404).json({ status: false, message: "You cant put quantity if you don't have stock." });
+      return;
+    }
+
     const product = new Product({ title, description, image, price, quantity, stock, category });
     await product.save();
 
@@ -53,6 +58,11 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
 
     if (!title || !description || !image || price === undefined || quantity === undefined || stock === undefined || !Array.isArray(category) || category.length === 0) {
       res.status(400).json({ status: false, message: "All fields are required." });
+      return;
+    }
+
+    if (quantity === 0 && stock === true || stock === false && quantity > 0) {
+      res.status(404).json({ status: false, message: "You cant put quantity if you don't have stock." });
       return;
     }
 

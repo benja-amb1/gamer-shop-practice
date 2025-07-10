@@ -49,12 +49,13 @@ const Products = () => {
             <h3>{product.title}</h3>
             <img src={product.image} alt={product.title} />
             <p>Price: <strong>${product.price}</strong></p>
-            {product.stock === false ? (
+
+            {(product.stock === false || product.quantity === 0) ? (
               <p className='no-stock'>Without Stock!</p>
             ) : (
               <p></p>
             )}
-            <NavLink to={`/product/${product._id}`}>Ver Producto</NavLink>
+            <NavLink to={`/product/${product._id}`}>View Product</NavLink>
           </div>
         ))}
 

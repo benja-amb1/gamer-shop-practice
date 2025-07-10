@@ -9,7 +9,7 @@ import { ArrowUp } from '../../assets/layout/ArrowUp';
 const Home = () => {
   const { products, getAllProducts, loading } = useProduct();
 
-  products.splice(6, 1);
+  products.splice(6, 1000000);
 
   useEffect(() => {
     getAllProducts();
@@ -37,6 +37,11 @@ const Home = () => {
               <h3>{product.title}</h3>
               <img src={product.image} alt={product.title} />
               <p>Price: <strong>${product.price}</strong></p>
+              {(product.stock === false || product.quantity === 0) ? (
+                <p className='no-stock'>Without Stock!</p>
+              ) : (
+                <p></p>
+              )}
               <NavLink to={`/product/${product._id}`}>View Product</NavLink>
             </div>
           ))}

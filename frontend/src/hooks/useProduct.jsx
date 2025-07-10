@@ -43,6 +43,11 @@ const useProduct = () => {
         return;
       }
 
+      if (!data.data.quantity === 0 && !data.data.price) {
+        setMsgError('You cant put quantity if you dont have stock');
+        returnn;
+      }
+
       setProduct(data.data);
       setMsgSuccess(data.message);
       clearMessage();
