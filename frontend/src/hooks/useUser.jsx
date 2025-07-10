@@ -47,10 +47,55 @@ export const useUser = () => {
   const registerSemiAdmin = () => register('semiadmin')
   const registerAdmin = () => register('admin')
 
+  const login = async () => {
+    try {
+      const res = await fetch(`${baseUrl}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include'
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMsgError(data.message);
+        clearMessage();
+        return;
+      }
+
+      setUser(data.data);
+      setMsgSuccess(data.message);
+      clearMessage();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getUser = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/${id}`, {
+        method: 'GET', credentials: 'include'
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setMsgError(data.message);
+        clearMessage();
+        return;
+      }
+      setUser(data.data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
 
 
   return {
-    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin
+    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login, getUser
   }
 }

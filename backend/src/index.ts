@@ -15,7 +15,7 @@ const MONGO_URI = 'mongodb://localhost:27017/compragamer';
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // esto es para q funcione el envio de token en cookies
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

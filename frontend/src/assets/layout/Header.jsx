@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import LoginIcon from '../images/loginicon.svg'
+import { useUser } from '../../hooks/useUser';
 
 const Header = () => {
 
   const [modal, setModal] = useState(false);
+  const { user, getUser } = useUser();
+
+  useEffect(() => {
+    getUser();
+  }, [])
+
+  console.log(user);
 
   const toggleModal = () => {
     setModal(prevValue => !prevValue)
@@ -41,8 +49,18 @@ const Header = () => {
 
             {modal && (
               <div className="header-modal">
-                <NavLink to={`/login`}>Login</NavLink>
-                <NavLink to={`/sign-up`}>Register</NavLink>
+                {!user ? (
+                  <>
+                    <NavLink to={`/login`}>Login</NavLink>
+                    <NavLink to={`/sign-up`}>Register</NavLink>
+                  </>
+                ) : (
+                  <>
+                    <NavLink to={`/profile/${user._id}`}>{user.name} {user.surname}</NavLink>
+                    <NavLink to={`/logout`}>Logout</NavLink>
+                  </>
+                )}
+
               </div>
             )}
           </li>
