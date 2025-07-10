@@ -9,7 +9,8 @@ import { ArrowUp } from '../../assets/layout/ArrowUp';
 const Home = () => {
   const { products, getAllProducts, loading } = useProduct();
 
-  products.splice(6, 1000000);
+  const limitedProducts = products.slice(0, 6);
+
 
   useEffect(() => {
     getAllProducts();
@@ -28,13 +29,14 @@ const Home = () => {
   return (
     <main>
       <section>
-        <h1>Home</h1>
-        <h2>Some Products:</h2>
+        <h1>Welcome to AdixGaming!</h1>
+        <h2>Here you'll find the best products to the best prices!</h2>
+        <h3>Some Products:</h3>
         <div className='product-section'>
 
-          {products.map(product => (
+          {limitedProducts.map(product => (
             <div className='product-card' key={product._id}>
-              <h3>{product.title}</h3>
+              <h4>{product.title}</h4>
               <img src={product.image} alt={product.title} />
               <p>Price: <strong>${product.price}</strong></p>
               {(product.stock === false || product.quantity === 0) ? (

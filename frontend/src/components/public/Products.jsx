@@ -34,16 +34,16 @@ const Products = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <>
+    <section className='products-jsx'>
       <h2>Products:</h2>
       <input className='search-input'
         type="text"
         onChange={searchTerm}
         value={term}
-        placeholder="Buscar producto..."
+        placeholder="Search product..."
       />
 
-      <section className='product-section'>
+      <article className='product-section'>
         {filteredProducts.map(product => (
           <div className='product-card' key={product._id}>
             <h3>{product.title}</h3>
@@ -60,8 +60,8 @@ const Products = () => {
         ))}
 
         <ArrowUp />
-      </section>
-    </>
+      </article>
+    </section>
   );
 };
 

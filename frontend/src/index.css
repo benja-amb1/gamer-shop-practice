@@ -7,9 +7,17 @@
 }
 
 main h1,
-main h2 {
+main h2,
+main h3 {
   text-align: center;
+  margin-bottom: 15px;
 }
+
+main h1 {
+  font-size: 50px;
+}
+
+
 
 /* Header */
 header .logo {
@@ -58,6 +66,7 @@ header ul li a {
   color: #ff4500;
 }
 
+
 .product-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -85,7 +94,7 @@ header ul li a {
   margin-bottom: 20px;
 }
 
-.product-card h3 {
+.product-card h4 {
   font-size: 15px;
   margin-bottom: 20px;
 }
@@ -240,6 +249,10 @@ header ul li a {
   color: red;
 }
 
+.products-jsx h2 {
+  text-align: center;
+  margin: 20px;
+}
 
 .arrow-scroll {
   cursor: pointer;
