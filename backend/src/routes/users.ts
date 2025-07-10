@@ -7,8 +7,10 @@ import {
   updateUser,
   getUser,
   loginUser,
-  logout
+  logout,
+  getMe
 } from "../controllers/users";
+import { isAuthenticated } from "../middlewares/authMiddleware";
 const router = express.Router();
 
 
@@ -22,5 +24,7 @@ router.post("/register/admin", createAdmin);
 router.get("/:id", getUser);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
+
+router.get('/get-me', isAuthenticated, getMe)
 
 export default router;

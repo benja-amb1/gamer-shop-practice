@@ -215,3 +215,18 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ status: false, message: "Server error." });
   }
 };
+
+export const getMe = async (req: UserReq, res: Response): Promise<any> => {
+  try {
+    const user = await User.findById(req.user?.id);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return
+    }
+    res.json({ data: user });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
