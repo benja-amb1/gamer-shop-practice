@@ -8,7 +8,7 @@ import {
   getUser,
   loginUser,
   logout,
-  getMe
+  getSession
 } from "../controllers/users";
 import { isAuthenticated } from "../middlewares/authMiddleware";
 const router = express.Router();
@@ -21,10 +21,10 @@ router.post("/register/user", createUser);
 router.post("/register/semiadmin", createSemiAdmin);
 router.post("/register/admin", createAdmin);
 
-router.get("/:id", getUser);
+router.get("/get-user/:id", getUser);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
 
-router.get('/get-me', isAuthenticated, getMe)
+router.get('/get-session', isAuthenticated, getSession)
 
 export default router;

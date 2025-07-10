@@ -6,13 +6,11 @@ import { useUser } from '../../hooks/useUser';
 const Header = () => {
 
   const [modal, setModal] = useState(false);
-  const { user, getUser } = useUser();
 
-  useEffect(() => {
-    getUser();
-  }, [])
+  const { getSession, user } = useUser();
 
-  console.log(user);
+  useEffect(() => { getSession() }, [])
+
 
   const toggleModal = () => {
     setModal(prevValue => !prevValue)

@@ -73,10 +73,30 @@ export const useUser = () => {
     }
   }
 
-  const getUser = async (id) => {
+  // const getUser = async (id) => {
+  //   try {
+  //     const res = await fetch(`${baseUrl}/${id}`, {
+  //       method: 'GET', credentials: 'include'
+  //     });
+
+  //     const data = await res.json();
+  //     if (!res.ok) {
+  //       setMsgError(data.message);
+  //       clearMessage();
+  //       return;
+  //     }
+  //     setUser(data.data);
+
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  const getSession = async () => {
     try {
-      const res = await fetch(`${baseUrl}/${id}`, {
-        method: 'GET', credentials: 'include'
+      const res = await fetch(`${baseUrl}/get-session`, {
+        method: 'GET',
+        credentials: 'include'
       });
 
       const data = await res.json();
@@ -86,7 +106,6 @@ export const useUser = () => {
         return;
       }
       setUser(data.data);
-
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +115,6 @@ export const useUser = () => {
 
 
   return {
-    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login, getUser
+    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login,/* getUser,*/ getSession
   }
 }

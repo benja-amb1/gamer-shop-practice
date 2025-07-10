@@ -44,7 +44,7 @@ export const deleteUser = async (req: UserReq, res: Response): Promise<any> => {
   try {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(404).json({ status: false, message: "Invalid ID." });
+      res.status(404).json({ status: false, message: "Invalid ID in deleteUser." });
       return
     }
 
@@ -78,7 +78,7 @@ export const updateUser = async (req: UserReq, res: Response): Promise<any> => {
     }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(404).json({ status: false, message: "Invalid ID." });
+      res.status(404).json({ status: false, message: "Invalid ID in update user." });
       return;
     }
 
@@ -115,7 +115,7 @@ export const getUser = async (req: Request, res: Response): Promise<any> => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(404).json({ status: false, message: "Invalid ID." });
+      res.status(404).json({ status: false, message: "Invalid ID in get user." });
       return;
     }
 
@@ -170,7 +170,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "lax",
       maxAge: 60 * 60 * 1000 // 1 h
     });
 
@@ -204,7 +204,7 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
 
     res.clearCookie('token', {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'development',
       sameSite: 'strict',
     });
 
@@ -216,17 +216,18 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export const getMe = async (req: UserReq, res: Response): Promise<any> => {
+export const getSession = async (req: UserReq, res: Response): Promise<any> => {
   try {
-    const user = await User.findById(req.user?.id);
+    const user = await User.findById(req.user?.id).select('-password');
+
     if (!user) {
-      res.status(404).json({ message: 'User not found' });
-      return
+      return res.status(404).json({ status: false, message: 'User not found' });
     }
-    res.json({ data: user });
+
+    res.status(200).json({ status: true, data: user });
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ status: false, message: 'Server error' });
   }
-}
+};
