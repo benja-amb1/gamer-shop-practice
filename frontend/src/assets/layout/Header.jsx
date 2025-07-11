@@ -9,9 +9,6 @@ const Header = () => {
 
   const { getSession, user, logout, loading } = useUser();
 
-
-  console.log(user);
-
   useEffect(() => { getSession() }, [])
 
 
