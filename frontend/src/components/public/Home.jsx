@@ -45,6 +45,7 @@ const Home = () => {
           <h2 key={category}>Category: {category}</h2>
         )))}
       </section>
+
       <ArrowUp />
     </main>
   );

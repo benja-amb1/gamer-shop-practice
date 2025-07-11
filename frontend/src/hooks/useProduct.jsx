@@ -17,7 +17,7 @@ const useProduct = () => {
   const [categoryInput, setCategoryInput] = useState('');
 
 
-  const baseUrl = 'http://localhost:4000/products';
+  const baseUrl = import.meta.env.VITE_API_URL;
 
   const clearMessage = () => {
     setTimeout(() => {
@@ -28,7 +28,7 @@ const useProduct = () => {
 
   const addProduct = async () => {
     try {
-      const res = await fetch(`${baseUrl}`, {
+      const res = await fetch(`${baseUrl}/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, image, price, quantity, stock: stock === 'true', category: categoryInput.split(',').map(cat => cat.trim()).filter(cat => cat.length > 0) })
@@ -59,7 +59,7 @@ const useProduct = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await fetch(`${baseUrl}/all-products`, {
+      const res = await fetch(`${baseUrl}/products/all-products`, {
         method: 'GET'
       });
 
@@ -81,7 +81,7 @@ const useProduct = () => {
 
   const getProduct = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/${id}`, {
+      const res = await fetch(`${baseUrl}/products/${id}`, {
         method: 'GET'
       });
 
@@ -101,7 +101,7 @@ const useProduct = () => {
 
   const updateProduct = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/${id}`, {
+      const res = await fetch(`${baseUrl}/products/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, image, price, quantity, stock: stock === 'true', category: categoryInput.split(',').map(cat => cat.trim()).filter(cat => cat.length > 0) })
@@ -126,7 +126,7 @@ const useProduct = () => {
 
   const deleteProduct = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/${id}`, {
+      const res = await fetch(`${baseUrl}/products/${id}`, {
         method: 'DELETE'
       });
 

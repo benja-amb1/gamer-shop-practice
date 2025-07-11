@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'http://localhost:5173', // 4173 build, 5173 dev
   credentials: true, // esto es para q funcione el envio de token en cookies
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));

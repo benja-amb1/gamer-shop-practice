@@ -86,6 +86,7 @@ header ul li a {
   align-items: center;
   text-align: center;
   min-height: 500px;
+  transition: transform 300ms;
 }
 
 .product-card img {
@@ -311,6 +312,12 @@ header ul li a {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
   padding-top: 50px;
   border-radius: 20px;
+  transition: transform 300ms;
+}
+
+.product-card:hover,
+.productId-card:hover {
+  transform: scale(1.05);
 }
 
 .admin-products-btns {

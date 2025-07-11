@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /login
+Disallow: /admin
+Disallow: /create-product
+Disallow: /register-admin
+Disallow: /register-semiadmin
+
+Sitemap: http://localhost:4173/

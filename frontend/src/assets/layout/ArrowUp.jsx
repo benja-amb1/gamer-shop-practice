@@ -8,7 +8,7 @@ const ArrowUp = () => {
   }
 
   return (
-    <img className='arrow-scroll' src={ArrowUpScroll} alt="Arrow Up Scroll" onClick={toTop} />
+    <img className='arrow-scroll' src={ArrowUpScroll} alt="Arrow Up Scroll" onClick={toTop} loading='lazy' />
   )
 }
 

@@ -12,7 +12,7 @@ export const useUser = () => {
   const [msgSuccess, setMsgSuccess] = useState('');
   const [loading, SetLoading] = useState(true)
 
-  const baseUrl = 'http://localhost:4000/users';
+  const baseUrl = import.meta.env.VITE_API_URL;
 
   const clearMessage = () => {
     setTimeout(() => {
@@ -23,7 +23,7 @@ export const useUser = () => {
 
   const register = async (role) => {
     try {
-      const res = await fetch(`${baseUrl}/register/${role}`, {
+      const res = await fetch(`${baseUrl}/users/register/${role}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, surname, email, password })
@@ -53,7 +53,7 @@ export const useUser = () => {
 
   const login = async () => {
     try {
-      const res = await fetch(`${baseUrl}/login`, {
+      const res = await fetch(`${baseUrl}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -80,7 +80,7 @@ export const useUser = () => {
 
   const getUser = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/get-user/${id}`, {
+      const res = await fetch(`${baseUrl}/users/get-user/${id}`, {
         method: 'GET', credentials: 'include'
       });
 
@@ -101,7 +101,7 @@ export const useUser = () => {
 
   const getSession = async () => {
     try {
-      const res = await fetch(`${baseUrl}/get-session`, {
+      const res = await fetch(`${baseUrl}/users/get-session`, {
         method: 'GET',
         credentials: 'include'
       });
@@ -122,7 +122,7 @@ export const useUser = () => {
 
   const logout = async () => {
     try {
-      const res = await fetch(`${baseUrl}/logout`, {
+      const res = await fetch(`${baseUrl}/users/logout`, {
         method: 'POST',
         credentials: 'include'
       });
@@ -140,7 +140,7 @@ export const useUser = () => {
 
   const deleteUser = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/users/delete-user/${id}`, {
+      const res = await fetch(`${baseUrl}/users/delete-user/${id}`, {
         method: 'DELETE',
         credentials: 'include'
       });
@@ -166,7 +166,7 @@ export const useUser = () => {
 
   const updateUser = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/update-user/${id}`, {
+      const res = await fetch(`${baseUrl}/users/update-user/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

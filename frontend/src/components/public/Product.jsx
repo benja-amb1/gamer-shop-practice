@@ -25,7 +25,7 @@ export const Product = () => {
           <p >Stock: <span className='no-stock'>Without Stock!</span></p>
         )}
 
-        <button className='btn-orange'>Buy Product</button>
+        <button className='btn-orange'>Add to cart</button>
       </article>
     </section>
   )
