@@ -7,7 +7,10 @@ const Header = () => {
 
   const [modal, setModal] = useState(false);
 
-  const { getSession, user, logout } = useUser();
+  const { getSession, user, logout, loading } = useUser();
+
+
+  console.log(user);
 
   useEffect(() => { getSession() }, [])
 
@@ -57,21 +60,25 @@ const Header = () => {
               <div className="header-modal">
 
 
-
-                {user ? (
+                {/* if */}
+                {user ? (user.role === 'admin' ? (
+                  <>
+                    <NavLink to={`/profile/${user._id}`}>{user.name} {user.surname}</NavLink>
+                    <NavLink to={`/admin`}>Admin Panel</NavLink>
+                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+                  </>
+                ) : ( //elseif
                   <>
                     <NavLink to={`/profile/${user._id}`}>{user.name} {user.surname}</NavLink>
                     <button onClick={handleLogout} className="logout-btn">Logout</button>
-
                   </>
-
-                ) : (
+                )
+                ) : ( //else
                   <>
                     <NavLink to={`/login`}>Login</NavLink>
                     <NavLink to={`/sign-up`}>Register</NavLink>
                   </>
                 )}
-
 
               </div>
             )}

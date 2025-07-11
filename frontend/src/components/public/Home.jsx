@@ -18,12 +18,7 @@ const Home = () => {
   }, []);
 
   const allCategories = products.flatMap(product => product.category);
-  const uniqueCategories = allCategories.filter((cat, index, self) => self.indexOf(cat) === index);
-
-
-
-
-
+  const uniqueCategories = allCategories.filter((cat, index, self) => self.indexOf(cat) === index)
 
   if (loading) return <p>Loading products...</p>;
 
@@ -36,7 +31,7 @@ const Home = () => {
 
 
         <article className='product-section'>
-          {limitedProducts.map(product => <CardProduct product={product} />)}
+          {limitedProducts.map(product => <CardProduct key={product._id} product={product} />)}
         </article>
 
         <NavLink className='btn-black' to={`/products/`}>See All Products</NavLink>
@@ -47,7 +42,7 @@ const Home = () => {
       <section>
         <h2>Explore for Categories!</h2>
         {uniqueCategories.map((category => (
-          <h2>Category: {category}</h2>
+          <h2 key={category}>Category: {category}</h2>
         )))}
       </section>
       <ArrowUp />

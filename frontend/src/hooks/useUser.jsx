@@ -198,6 +198,6 @@ export const useUser = () => {
 
 
   return {
-    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login, getUser, getSession, logout, deleteUser, updateUser
+    registerUser, msgError, msgSuccess, user, users, name, surname, email, password, setEmail, setName, setPassword, setSurname, registerAdmin, registerSemiAdmin, login, getUser, getSession, logout, deleteUser, updateUser, loading
   }
 }
