@@ -17,7 +17,7 @@ export const Product = () => {
     <section className='productId'>
       <article className='productId-card' key={product._id}>
         <h2>{product.title}</h2>
-        <img src={product.image} alt={product.title} />
+        <img src={product.image} alt={product.title} loading='lazy' />
         <p>Description: {product.description}</p>
         <p>Price: <strong>${product.price}</strong></p>
         <p>Quantity: <strong>{product.quantity}</strong></p>

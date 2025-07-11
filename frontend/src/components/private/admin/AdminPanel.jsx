@@ -63,7 +63,7 @@ const AdminPanel = () => {
         {filteredProducts.map(product => (
           <div className='product-card' key={product._id}>
             <h3>{product.title}</h3>
-            <img src={product.image} alt={product.title} />
+            <img src={product.image} alt={product.title} loading='lazy' />
             <p>Price: <strong>${product.price}</strong></p>
 
             {(product.stock === false || product.quantity === 0) ? (

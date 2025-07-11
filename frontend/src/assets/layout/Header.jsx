@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <header>
-      <img onClick={handleClick} className='logo' src="https://www.pngmart.com/files/23/Free-Logos-PNG.png" alt="Logo Image" />
+      <img onClick={handleClick} className='logo' src="https://www.pngmart.com/files/23/Free-Logos-PNG.png" alt="Logo Image" loading='lazy' />
 
       <nav>
         <ul>
