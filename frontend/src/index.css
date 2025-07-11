@@ -323,7 +323,8 @@ header ul li a {
 
 .admin-products-btns button,
 .btn-confirm,
-.btn-cancel {
+.btn-cancel,
+.navlinks-admin a {
   border: none;
   padding: 1rem;
   border-radius: 10px;
@@ -332,15 +333,15 @@ header ul li a {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
 }
 
-.admin-products-btns button:nth-child(1) {
-  background-color: rgb(0, 190, 0);
+.admin-products-btns a:nth-child(1) {
+  background-color: #00be00;
 }
 
-.admin-products-btns button:nth-child(2) {
+.admin-products-btns a:nth-child(2) {
   background-color: blue;
 }
 
-.admin-products-btns button:nth-child(3) {
+.admin-products-btns button {
   background-color: red;
   text-align: center;
   border: none;
@@ -378,6 +379,25 @@ header ul li a {
   background-color: red;
 }
 
+.navlinks-admin {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  gap: 1em;
+  max-width: 200px;
+}
+
+.navlinks-admin a:nth-child(1) {
+  background-color: #00be00;
+}
+
+.navlinks-admin a:nth-child(2) {
+  background-color: orange;
+}
+
+.navlinks-admin a:nth-child(3) {
+  background-color: orangered;
+}
 
 /* Footer */
 footer {

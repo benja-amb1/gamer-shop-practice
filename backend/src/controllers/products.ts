@@ -11,7 +11,7 @@ export const addProduct = async (req: Request, res: Response): Promise<any> => {
       return;
     }
 
-    if (quantity === 0 && stock === true || stock === false && quantity > 0) {
+    if (quantity <= 0 && stock === true || stock === false && quantity <= 0) {
       res.status(404).json({ status: false, message: "You cant put quantity if you don't have stock." });
       return;
     }

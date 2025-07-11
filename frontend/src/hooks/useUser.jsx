@@ -34,6 +34,7 @@ export const useUser = () => {
       if (!res.ok) {
         setMsgError(data.message);
         clearMessage();
+        return;
       }
 
       setUser(data.data);

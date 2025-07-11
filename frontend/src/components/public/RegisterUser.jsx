@@ -13,9 +13,13 @@ const RegisterUser = () => {
     e.preventDefault();
     await registerUser();
 
-    setTimeout(() => {
-      navigate('/login')
-    }, 3000);
+    if (msgSuccess) {
+      setTimeout(() => {
+        navigate('/login')
+      }, 3000);
+    }
+
+
   }
 
   return (

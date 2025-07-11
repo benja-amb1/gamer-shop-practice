@@ -52,6 +52,13 @@ const AdminPanel = () => {
         placeholder="Search product..."
       />
 
+      <div className='navlinks-admin'>
+        <NavLink to={`/create-product`}>Create Product</NavLink>
+        <NavLink to={`/register-admin`}>Register Admin</NavLink>
+        <NavLink to={`/register-semiadmin`}>Register Semi-Admin</NavLink>
+      </div>
+
+
       <article className='product-section'>
         {filteredProducts.map(product => (
           <div className='product-card' key={product._id}>
@@ -66,8 +73,8 @@ const AdminPanel = () => {
             )}
 
             <div className='admin-products-btns'>
-              <button to={`/product/${product._id}`}>View Product</button>
-              <button to={`/update-product/${product._id}`}>Update Product</button>
+              <NavLink to={`/product/${product._id}`}>View Product</NavLink>
+              <NavLink to={`/update-product/${product._id}`}>Update Product</NavLink>
               <button onClick={() => setModalProductId(product._id)}>Delete Product</button>
             </div>
 
