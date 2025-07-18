@@ -14,6 +14,7 @@ import { UpdateUser } from '../components/public/UpdateUser'
 import { PrivateRoutes } from './PrivateRoutes'
 import { RegisterAdmin } from '../components/private/admin/RegisterAdmin'
 import { RegisterSemiAdmin } from '../components/private/admin/RegisterSemiAdmin'
+import { Contact } from '../components/public/Contact'
 
 
 const Routing = () => {
@@ -31,18 +32,20 @@ const Routing = () => {
         <Route path='/products' element={<Products />} />
         <Route path='/product/:id' element={<Product />} />
         <Route path='/update-product/:id' element={<UpdateProduct />} />
+        <Route path='/contact' element={<Contact />} />
 
         <Route path='/login' element={<Login />} />
         <Route path='/sign-up' element={<RegisterUser />} />
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/update-user/:id' element={<UpdateUser />} />
-        <Route path='/register-admin' element={<RegisterAdmin />} />
-        <Route path='/register-semiadmin' element={<RegisterSemiAdmin />} />
+
 
 
         {/* Routes for admin */}
         <Route element={<PrivateRoutes roles={['admin']} />}>
           <Route path='/admin' element={<AdminPanel />} />
+          <Route path='/register-admin' element={<RegisterAdmin />} />
+          <Route path='/register-semiadmin' element={<RegisterSemiAdmin />} />
         </Route>
 
       </Routes>

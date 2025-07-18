@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import LoginIcon from '../images/loginicon.svg'
+import CartIcon from '../images/cart.svg'
 import { useUser } from '../../hooks/useUser';
 
 const Header = () => {
@@ -66,7 +67,9 @@ const Header = () => {
                   </>
                 ) : ( //elseif
                   <>
+
                     <NavLink to={`/profile/${user._id}`}>{user.name} {user.surname}</NavLink>
+                    <button className='cart-icon'><img src={CartIcon} alt="Cart Icon" /></button>
                     <button onClick={handleLogout} className="logout-btn">Logout</button>
                   </>
                 )

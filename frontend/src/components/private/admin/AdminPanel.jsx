@@ -69,7 +69,7 @@ const AdminPanel = () => {
             {(product.stock === false || product.quantity === 0) ? (
               <p className='no-stock'>Without Stock!</p>
             ) : (
-              <p></p>
+              <p className='stock'>¡Stock!</p>
             )}
 
             <div className='admin-products-btns'>

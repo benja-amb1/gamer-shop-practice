@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 const CardProduct = (props) => {
 
-  const { product } = props;
+  const { product, filteredProducts } = props;
 
   return (
     <div className='product-card' key={product._id}>
@@ -13,7 +13,7 @@ const CardProduct = (props) => {
       {(product.stock === false || product.quantity === 0) ? (
         <p className='no-stock'>Without Stock!</p>
       ) : (
-        <p></p>
+        <p className='stock'>¡Stock!</p>
       )}
       <NavLink to={`/product/${product._id}`}>View Product</NavLink>
     </div>
